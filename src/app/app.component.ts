@@ -98,13 +98,19 @@ export class AppComponent {
               i.calle_servicio + '' + '#' + i.no_exterior_servicio;
             this.datosMostrar.estatus = i.estatus;
             this.datosMostrar.notas = i.notas;
-            this.datosMostrar.fecha_solicitud = i.fecha_solicitud;
-            this.datosMostrar.fecha_realizacion = i.fecha_realizacion;
+            this.datosMostrar.fecha_solicitud = moment(i.fecha_solicitud).format('LLLL');
+            this.datosMostrar.fecha_realizacion = moment(i.fecha_realizacion).format('LLLL');
             this.datosMostrar.precio = i.precio;
             this.datosMostrar.notas_respuestas = i.notas_respuestas;
             this.datosMostrar.folio = i.folio;
+            if(i.fecha_realizacion == null){
+              this.datosMostrar.fecha_realizacion = 'Sin respuesta'
+            }
           }
-          this.datosMostrar.Responsable = d.Responsable
+
+
+
+          this.datosMostrar.Responsable = d.responsable
         }else{
           this.mostrarDatosporfolio = false;
           Swal.fire({
