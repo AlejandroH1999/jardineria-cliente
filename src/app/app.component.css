@@ -20,19 +20,26 @@
 
 .fecha {
   text-align: end;
-  height: 13px;
-  padding-right: 20px;
+  height: 30px;
+  margin: 40px;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 13px;
 
   color: #ffffff;
 }
+.icono{
+  position: absolute;
+  text-align: end;
+  height: 20px;
+  padding-right: 40px;
+  /* padding-top: 10px; */
+}
 
-img {
+.logoimg{
   position: absolute;
   width: 95px;
   height: 110.47px;
@@ -85,8 +92,16 @@ h4 {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+  text-align: center;
 
   color: #ffffff;
+}
+
+.reportaenlinea:hover{
+  cursor: pointer;
+  background: #1785b7;
+  /* color: #1785b7; */
+  height: 25px;
 }
 
 .seguimiento {
@@ -101,8 +116,16 @@ h4 {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+  text-align: center;
 
   color: #ffffff;
+}
+
+.seguimiento:hover{
+  cursor: pointer;
+  background: #1785b7;
+  /* color: #1785b7; */
+  height: 25px;
 }
 
 .appmovil {
@@ -117,8 +140,21 @@ h4 {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+  text-align: center;
 
   color: #ffffff;
+}
+
+.linkDescarga{
+  color: white;
+  text-decoration: none;
+}
+
+.appmovil:hover{
+  cursor: pointer;
+  background: #1785b7;
+  /* color: #1785b7; */
+  height: 25px;
 }
 
 .titulo {
@@ -194,7 +230,7 @@ h4 {
 
 .tit1 {
   position: absolute;
-  width: 60px;
+  width: 100px;
   height: 15px;
   left: 259px;
   top: 331px;
@@ -369,7 +405,7 @@ h4 {
 
 .tit7 {
   position: absolute;
-  width: 43px;
+  width: 100px;
   height: 15px;
   left: 259px;
   top: 466px;
@@ -586,6 +622,36 @@ h4 {
   color: #000000;
 }
 
+.check2{
+  position: absolute;
+  width: 91px;
+  height: 15px;
+  left: 730px;
+  top: 354px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+
+}
+
+.textCheck2{
+  position: absolute;
+  width: 200px;
+  height: 15px;
+  left: 790px;
+  top: 354px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+
 .caja-b1 {
   position: absolute;
   width: 495px;
@@ -600,7 +666,7 @@ h4 {
 
 .tit-b2 {
   position: absolute;
-  width: 29px;
+  width: 100px;
   height: 15px;
   left: 259px;
   top: 399px;
@@ -629,7 +695,7 @@ h4 {
 
 .tit-b3 {
   position: absolute;
-  width: 45px;
+  width: 100px;
   height: 15px;
   left: 483px;
   top: 399px;
@@ -716,7 +782,7 @@ h4 {
 
 .tit-b6 {
   position: absolute;
-  width: 43px;
+  width: 100px;
   height: 15px;
   left: 259px;
   top: 466px;
@@ -1739,4 +1805,25 @@ h4 {
   display: grid;
   text-align: start;
   padding: 10px;
+}
+
+#pdf{
+  /* text-align: center; */
+  margin: 20px;
+  position: relative;
+  top: 0;
+  /* right: 2500px; */
+
+  left: -2000px;
+}
+
+.textPdf{
+  font-size: 30px;
+  padding-bottom: 5px;
+}
+
+.titulopdf{
+  /* color: red; */
+  /* display:inline-block;
+  vertical-align:middle; */
 }

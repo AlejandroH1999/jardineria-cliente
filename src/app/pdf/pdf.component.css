@@ -1,0 +1,18 @@
+#pdf{
+  /* text-align: center; */
+  margin: 20px;
+  /* position: relative;
+  top: 0; */
+  /* right: 2500px; */
+}
+
+.textPdf{
+  font-size: 30px;
+  padding-bottom: 5px;
+}
+
+.titulopdf{
+  /* color: red; */
+  /* display:inline-block;
+  vertical-align:middle; */
+}

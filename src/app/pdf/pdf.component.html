@@ -1,0 +1,65 @@
+<!-- <div id="pdf" #pdf *ngIf="pagina == 5">
+  <p style="text-align: center; font-weight: bold; font-size: 35px">
+    <label for="" class="textPdf titulopdf">SOLICITUD DE SERVICIO</label>
+  </p>
+
+  <p style="text-align: center; color: red">
+    <label for="" class="textPdf"
+      >el número de su reporte es: {{ datos.solicitud.folio }}</label
+    >
+  </p>
+
+  <p style="padding-bottom: 20px; font-weight: bold">
+    <label for="" class="textPdf">Datos del reporte: </label>
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Nombre completo: </label>
+    <label for="" class="textPdf"
+      >{{ datos.solicitante.nombres }}
+      {{ datos.solicitante.apellido_paterno }}
+      {{ datos.solicitante.apellido_materno }}</label
+    >
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Telefono: </label>
+    <label for="" class="textPdf">{{ datos.solicitante.telefono }}</label>
+  </p>
+
+  <p style="padding-bottom: 20px; padding-top: 20px; font-weight: bold">
+    <label for="" class="textPdf">Detalles del reporte:</label>
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Servicio: </label>
+    <label for="" class="textPdf">{{
+      datos.solicitud.tipo_servicio
+    }}</label>
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Responsable: </label>
+    <label for="" class="textPdf">responsable</label>
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Direccion: </label>
+    <label for="" class="textPdf"
+      >{{ datos.solicitud.calle }} #{{ datos.solicitud.numero }}</label
+    >
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Tipo de domicilio: </label>
+    <label for="" class="textPdf">{{
+      datos.solicitud.tipo_domicilio
+    }}</label>
+  </p>
+
+  <p>
+    <label for="" class="textPdf">Colonia: </label>
+    <label for="" class="textPdf">{{ datos.solicitud.colonia }}</label>
+  </p>
+</div> -->
+<app-root (messageEvent)="receiveMessage($event)"></app-root>

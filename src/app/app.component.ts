@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { SolicitudesService } from './services/solicitudes.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import  {Moment}  from 'moment';
+import * as moment from 'moment';
+import { animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-root',
@@ -10,45 +16,51 @@ import Swal from 'sweetalert2'
 export class AppComponent {
   title = 'Ayuntamiento de Uruapan';
   pagina = 1;
+  fecha = Date();
+  fechaMostar = ''
   terminos = true;
   imagencargada = false;
-  menu = 2;
+  menu = 1;
   buscarFolio = '';
+  mostrarDatosporfolio = false;
+  mismaDireccion = true;
+  responsable = '';
 
   datosMostrar = {
-    tipo_servicio:'',
-    ubicacion:'',
-    estatus:'',
-    fecha_solicitud:'',
-    notas:'',
-    Reportado:'Internet',
-    Responsable:'',
-    fecha_realizacion:'',
-    precio:'',
-    notas_respuestas:''
-  }
+    tipo_servicio: '',
+    ubicacion: '',
+    estatus: '',
+    fecha_solicitud: '',
+    notas: '',
+    Reportado: 'Internet',
+    Responsable: '',
+    fecha_realizacion: '',
+    precio: '',
+    notas_respuestas: '',
+    folio: '',
+  };
 
   datos = {
     solicitante: {
-      nombre: 'JOnathan Alejandro',
+      nombres: '',
       apellido_paterno: '',
       apellido_materno: '',
       calle: '',
-      id_colonia: '',
-      no_exterior: '',
+      colonia: '',
+      no_casa: '',
       telefono: '',
       correo: '',
-      tipo_solicitante: '',
+      solicitante: '',
       no_empleado: '',
-      cruzamiento_1: '',
-      cruzamiento_2: '',
+      cruzamiento1: '',
+      cruzamiento2: '',
     },
     solicitud: {
-      id_colonia_servicio: '',
-      calle_servicio: '',
-      no_exterior_servicio: '',
-      calle_cruzamiento_1: '',
-      calle_cruzamiento_2: '',
+      colonia: '',
+      calle: '',
+      numero: '',
+      cruzamiento1: '',
+      cruzamiento2: '',
       fotografia: '',
       tipo_domicilio: '',
       notas: '',
@@ -66,66 +78,92 @@ export class AppComponent {
   constructor(private api: SolicitudesService) {}
 
   ngOnInit(): void {
+    moment.locale("es");
+    this.fechaMostar = moment(this.fecha).format("LLLL")
     console.log(this.pagina);
   }
 
-  cargarDatosFolio(){
-    this.api.GetReporte(this.buscarFolio).subscribe(data =>{
-      console.log(data);
-      const d:any = data
-      for (const i of d.data) {
-        this.datosMostrar.tipo_servicio = i.tipo_servicio;
-        this.datosMostrar.ubicacion = i.calle_servicio + '' + '#' + i.no_exterior_servicio;
-        this.datosMostrar.estatus = i.estatus;
-        this.datosMostrar.notas = i.notas;
-        this.datosMostrar.fecha_solicitud = i.fecha_solicitud;
-        this.datosMostrar.fecha_realizacion = i.fecha_realizacion;
-        this.datosMostrar.precio = i.precio;
-        this.datosMostrar.notas_respuestas = i.notas_respuestas;
-      }
+  cargarDatosFolio() {
+    if (this.buscarFolio == '') {
+      Swal.fire('Ingrese un folio valido')
+    }else{
+      this.api.GetReporte(this.buscarFolio).subscribe((data) => {
+        console.log(data);
+        const d: any = data;
+        if (d.data.length > 0) {
+          this.mostrarDatosporfolio = true;
+          for (const i of d.data) {
+            this.datosMostrar.tipo_servicio = i.tipo_servicio;
+            this.datosMostrar.ubicacion =
+              i.calle_servicio + '' + '#' + i.no_exterior_servicio;
+            this.datosMostrar.estatus = i.estatus;
+            this.datosMostrar.notas = i.notas;
+            this.datosMostrar.fecha_solicitud = i.fecha_solicitud;
+            this.datosMostrar.fecha_realizacion = i.fecha_realizacion;
+            this.datosMostrar.precio = i.precio;
+            this.datosMostrar.notas_respuestas = i.notas_respuestas;
+            this.datosMostrar.folio = i.folio;
+          }
+          this.datosMostrar.Responsable = d.Responsable
+        }else{
+          this.mostrarDatosporfolio = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No existe el folio ingresado'
+          })
+        }
+      });
+    }
 
-    })
   }
 
   siguiente() {
     if (this.pagina == 2) {
       if (
         this.datos.solicitud.tipo_servicio !== '' &&
-        this.datos.solicitud.calle_servicio !== '' &&
-        this.datos.solicitud.no_exterior_servicio !== '' &&
-        this.datos.solicitud.calle_cruzamiento_1 !== '' &&
-        this.datos.solicitud.calle_cruzamiento_2 !== '' &&
-        this.datos.solicitud.id_colonia_servicio !== '' &&
+        this.datos.solicitud.calle !== '' &&
+        this.datos.solicitud.numero !== '' &&
+        this.datos.solicitud.cruzamiento1 !== '' &&
+        this.datos.solicitud.cruzamiento2 !== '' &&
+        this.datos.solicitud.colonia !== '' &&
         this.datos.solicitud.tipo_servicio !== '' &&
         this.datos.solicitud.fotografia !== '' &&
         this.datos.solicitud.notas !== ''
       ) {
         this.pagina = this.pagina + 1;
         console.log(this.datos);
-
       } else {
         console.log(this.datos);
         console.log('LLenar todos los campos');
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Llenar todos los campos!'
-        })
+        if (this.datos.solicitud.fotografia == '') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Agrega una fotografia!',
+          });
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Llenar todos los campos!',
+          });
+        }
+
       }
     }
     if (this.pagina == 1) {
       if (
-        this.datos.solicitante.tipo_solicitante !== '' &&
+        this.datos.solicitante.solicitante !== '' &&
         this.datos.solicitante.telefono !== '' &&
-        this.datos.solicitante.nombre !== '' &&
+        this.datos.solicitante.nombres !== '' &&
         this.datos.solicitante.apellido_paterno !== '' &&
         this.datos.solicitante.apellido_materno !== '' &&
-        this.datos.solicitante.id_colonia !== '' &&
+        this.datos.solicitante.colonia !== '' &&
         this.datos.solicitante.calle !== '' &&
-        this.datos.solicitante.no_exterior !== '' &&
-        this.datos.solicitante.cruzamiento_1 !== '' &&
-        this.datos.solicitante.cruzamiento_2 !== '' &&
-        this.datos.solicitante.correo !== ''
+        this.datos.solicitante.no_casa !== '' &&
+        this.datos.solicitante.cruzamiento1 !== '' &&
+        this.datos.solicitante.cruzamiento2 !== ''
       ) {
         this.pagina = this.pagina + 1;
       } else {
@@ -133,11 +171,10 @@ export class AppComponent {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Llenar todos los campos!'
-        })
+          text: 'Llenar todos los campos!',
+        });
       }
     }
-
   }
 
   regresar() {
@@ -152,25 +189,25 @@ export class AppComponent {
     this.pagina = 1;
     this.datos = {
       solicitante: {
-        nombre: '',
+        nombres: '',
         apellido_paterno: '',
         apellido_materno: '',
         calle: '',
-        id_colonia: '',
-        no_exterior: '',
+        colonia: '',
+        no_casa: '',
         telefono: '',
         correo: '',
-        tipo_solicitante: '',
+        solicitante: '',
         no_empleado: '',
-        cruzamiento_1: '',
-        cruzamiento_2: '',
+        cruzamiento1: '',
+        cruzamiento2: '',
       },
       solicitud: {
-        id_colonia_servicio: '',
-        calle_servicio: '',
-        no_exterior_servicio: '',
-        calle_cruzamiento_1: '',
-        calle_cruzamiento_2: '',
+        colonia: '',
+        calle: '',
+        numero: '',
+        cruzamiento1: '',
+        cruzamiento2: '',
         fotografia: '',
         tipo_domicilio: '',
         notas: '',
@@ -188,13 +225,30 @@ export class AppComponent {
   }
   enviar() {
     this.api.postReporte(this.datos).subscribe((data) => {
-      console.log(data);
+
       const d: any = data;
+
       this.datos.solicitud.folio = d.folio;
-      console.log(this.datos.solicitud.folio);
+      this.responsable = d.responsable;
+      console.log(d.responsable);
+      // console.log(this.datos.solicitud.);
       if (!d.error) {
         // this.cancelar();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Su reporte fue enviado',
+          showConfirmButton: false,
+          width: 600,
+          timer: 1500
+        })
         this.pagina = 4;
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error al enviar el reporte'
+        })
       }
     });
   }
@@ -227,7 +281,100 @@ export class AppComponent {
     archivoIn.click();
   }
 
-  acepto(){
+  acepto() {
     this.terminos = !this.terminos;
   }
+
+  navegarmenu(num: any) {
+    this.menu = num;
+    if (num == 1) {
+      window.location.reload();
+    }
+    if (num == 2) {
+      this.buscarFolio = '';
+      this.mostrarDatosporfolio = false;
+    }
+
+  }
+
+  imprimir(){
+    // this.pagina = 5;
+
+    // Extraemos el
+    const DATA = document.getElementById('pdf')!;
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 20;
+      const bufferY = 20;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      // console.log(docResult);
+
+      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+      // this.pagina = 1;
+    });
+
+
+  }
+
+  utilizarMismaDireccion(){
+    console.log(this.mismaDireccion);
+    this.mismaDireccion = !this.mismaDireccion;
+    if (!this.mismaDireccion) {
+      this.datos.solicitud.calle = this.datos.solicitante.calle;
+    this.datos.solicitud.numero = this.datos.solicitante.no_casa;
+    this.datos.solicitud.colonia = this.datos.solicitante.colonia;
+    this.datos.solicitud.cruzamiento1 = this.datos.solicitante.cruzamiento1;
+    this.datos.solicitud.cruzamiento2 = this.datos.solicitante.cruzamiento2;
+    }else{
+      this.datos.solicitud.calle = '';
+    this.datos.solicitud.numero = '';
+    this.datos.solicitud.colonia = '';
+    this.datos.solicitud.cruzamiento1 = '';
+    this.datos.solicitud.cruzamiento2 = '';
+    }
+    console.log(this.datos.solicitud);
+
+
+  }
+    // let element : any = document.getElementById('pdf');
+
+    // const options = {
+    //   background:'#000000',
+    //   scale: 5
+    // }
+    // html2canvas(element, options).then((canvas)=>{
+
+    //   var imgData = canvas.toDataURL('image/png');
+    //     var imgWidth = 210;
+    //     var pageHeight = 295;
+    //     var imgHeight = canvas.height * imgWidth / canvas.width;
+    //     var heightLeft = imgHeight;
+
+    //     var doc = new jsPDF('p', 'mm', "a4");
+    //     var position = 0;
+
+    //     doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight+10);
+    //     heightLeft -= pageHeight;
+
+    //     while (heightLeft >= 0) {
+    //         position = heightLeft - imgHeight;
+    //         doc.addPage();
+    //         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight+10);
+    //         heightLeft -= pageHeight;
+    //     }
+    //   doc.save(`${new Date().toISOString()}_Personal.pdf`);
+    //   });
 }

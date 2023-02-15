@@ -5,3 +5,7 @@
   overflow-x: hidden;
   /* overflow: hidden; */
 }
+
+.swal2-icon{
+  overflow: hidden !important;
+}

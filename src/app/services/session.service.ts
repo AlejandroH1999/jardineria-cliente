@@ -6,11 +6,12 @@ import { environment } from 'src/environments/environment';
 })
 export class SessionService {
 
-  urlAPI = 'http://localhost:3000/api/v1'
+  // urlAPI = 'http://dihops.com:12080/api/v1'
   url = 'http://localhost:3000'
+  urlAPI = 'http://localhost:12080/api/v1'
   user:any;
   public username = ''
-  constructor() { 
+  constructor() {
     const existUser = localStorage.getItem('user');
     this.username = existUser == null ? '' : JSON.parse(existUser).usuario;
     this.user = existUser == null ? '' : JSON.parse(existUser);
@@ -26,5 +27,5 @@ export class SessionService {
     this.username = datauser.username;
   }
 
-  
+
 }
