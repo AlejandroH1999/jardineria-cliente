@@ -16,4 +16,5 @@ label{
   font-weight: 400;
   font-size: 16px !important;
   line-height: 15px;
+   overflow: hidden !important;
 }
