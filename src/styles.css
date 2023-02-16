@@ -9,3 +9,11 @@
 .swal2-icon{
   overflow: hidden !important;
 }
+
+label{
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px !important;
+  line-height: 15px;
+}

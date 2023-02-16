@@ -1,22 +1,27 @@
 <div class="contenedor">
   <div class="encabezado">
-    <label class="fecha" for=""
-      >{{fechaMostar}}</label
-    >
+    <label class="fecha" for="">{{ fechaMostar }}</label>
     <div class="logo">
       <img class="logoimg" src="../assets/img/logoPresi.png" alt="" />
-      <h3>Reporta en linea</h3>
+      <h3>Reporta en línea</h3>
       <h4>Ayuntamiento de uruapan</h4>
     </div>
     <div class="menu">
-      <h4 class="reportaenlinea" (click)="navegarmenu(1)">Reporta en linea</h4>
+      <h4 class="reportaenlinea" (click)="navegarmenu(1)">Reporta en línea</h4>
       <h4 class="seguimiento" (click)="navegarmenu(2)">Seguimiento</h4>
-      <h4 class="appmovil"><a class="linkDescarga" href="https://es-la.facebook.com/" target="_blank">App movil</a></h4>
+      <h4 class="appmovil">
+        <a
+          class="linkDescarga"
+          href="https://drive.google.com/file/d/1V1V74L7zh6dC5jkYFqyQL8qAlv0YBwSx/view?usp=share_link"
+          target="_blank"
+          >App movil</a
+        >
+      </h4>
     </div>
   </div>
   <div class="contenido" *ngIf="menu == 1">
     <h4 class="titulo" *ngIf="pagina != 3 && pagina != 4">
-      Proporcione correctamente la informacion para poder darle seguimiento al
+      Proporcione correctamente la información para poder darle seguimiento al
       servicio solicitado.
       <br />
       Los campos marcados con * indican que son requeridos
@@ -29,10 +34,8 @@
     </h3>
     <div class="line2" *ngIf="pagina == 3 || pagina == 4"></div>
     <div class="line" *ngIf="pagina != 3 && pagina != 4"></div>
-
     <div class="form1" *ngIf="pagina == 1">
       <label for="" class="tit1">Solicitante *</label>
-      <!-- <input type="text" class="caja1" /> -->
       <select
         name=""
         id=""
@@ -41,10 +44,10 @@
       >
         <option value="ciudadano">Ciudadano</option>
         <option value="Empleado_del_ayuntamiento">
-          Empleado del ayuntamiento
+          Empleado del Ayuntamiento
         </option>
       </select>
-      <label for="" class="tit2">Numero de empleado</label>
+      <label for="" class="tit2">Número de empleado</label>
       <input
         type="number"
         class="caja2"
@@ -57,74 +60,63 @@
         readonly
         *ngIf="datos.solicitante.solicitante == 'ciudadano'"
       />
-
-      <label for="" class="tit3">Numero de Telefono *</label>
+      <label for="" class="tit3">Número de teléfono *</label>
       <input
         type="number"
         class="caja3"
         [(ngModel)]="datos.solicitante.telefono"
       />
-
       <label for="" class="tit4">Nombre(s) *</label>
       <input
         type="text"
         class="caja4"
         [(ngModel)]="datos.solicitante.nombres"
       />
-
       <label for="" class="tit5">Apellido paterno *</label>
       <input
         type="text"
         class="caja5"
         [(ngModel)]="datos.solicitante.apellido_paterno"
       />
-
-      <label for="" class="tit6">Apellido Materno *</label>
+      <label for="" class="tit6">Apellido materno *</label>
       <input
         type="text"
         class="caja6"
         [(ngModel)]="datos.solicitante.apellido_materno"
       />
-
       <label for="" class="tit7">Colonia *</label>
       <input
         type="text"
         class="caja7"
         [(ngModel)]="datos.solicitante.colonia"
       />
-
       <label for="" class="tit8">Calle *</label>
       <input type="text" class="caja8" [(ngModel)]="datos.solicitante.calle" />
-
-      <label for="" class="tit9">Numero exterior *</label>
+      <label for="" class="tit9">Número exterior *</label>
       <input
         type="text"
         class="caja9"
         [(ngModel)]="datos.solicitante.no_casa"
       />
-
       <label for="" class="tit10">Cruzamiento 1 *</label>
       <input
         type="text"
         class="caja10"
         [(ngModel)]="datos.solicitante.cruzamiento1"
       />
-
       <label for="" class="tit11">Cruzamiento 2 *</label>
       <input
         type="text"
         class="caja11"
         [(ngModel)]="datos.solicitante.cruzamiento2"
       />
-
-      <label for="" class="tit12">Correo</label>
+      <label for="" class="tit12">Correo *</label>
       <input
         type="email"
         class="caja12"
         [(ngModel)]="datos.solicitante.correo"
         placeholder="ayuntamiento@uruapan.gob.mx"
       />
-
       <input
         type="checkbox"
         class="check"
@@ -132,31 +124,24 @@
         (change)="acepto()"
       />
       <label for="" class="textCheck">
-        He leído y acepto el <a href="../assets/img/privacidad.pdf" target="_blank">Aviso de Privacidad Simplificado </a>de este
-        sitio</label
+        He leído y acepto el
+        <a href="../assets/img/privacidad.pdf" target="_blank"
+          >Aviso de privacidad simplificado </a
+        >de este sitio</label
       >
-
       <button class="btn" [disabled]="terminos" (click)="siguiente()">
         Continuar
       </button>
     </div>
     <div class="form2" *ngIf="pagina == 2">
-
       <input
         type="checkbox"
         class="check2"
         [checked]="!mismaDireccion"
         (change)="utilizarMismaDireccion()"
       />
-      <label for="" class="textCheck2">
-        Utilizar la misma direccion</label
-      >
-
-
-
+      <label for="" class="textCheck2"> Utilizar la misma dirección</label>
       <label for="" class="tit-b1">Tipo de servicio *</label>
-      <!-- <input type="text" class="caja-b1" [(ngModel)]="datos.tipo_servicio"/> -->
-
       <select
         name=""
         id=""
@@ -175,39 +160,32 @@
         <option
           value="Retiro de tocon y manejo integral del mismo dejado en la via publica"
         >
-          Retiro de tocon y manejo integral del mismo dejado en la via publica
+          Retiro de tocón y manejo integral del mismo dejado en la vía pública
         </option>
       </select>
-
       <label for="" class="tit-b2">Calle *</label>
       <input type="text" class="caja-b2" [(ngModel)]="datos.solicitud.calle" />
-
-      <label for="" class="tit-b3">Numero *</label>
+      <label for="" class="tit-b3">Número *</label>
       <input type="text" class="caja-b3" [(ngModel)]="datos.solicitud.numero" />
-
       <label for="" class="tit-b4">Cruzamiento 1 *</label>
       <input
         type="text"
         class="caja-b4"
         [(ngModel)]="datos.solicitud.cruzamiento1"
       />
-
       <label for="" class="tit-b5">Cruzamiento 2 *</label>
       <input
         type="text"
         class="caja-b5"
         [(ngModel)]="datos.solicitud.cruzamiento2"
       />
-
       <label for="" class="tit-b6">Colonia *</label>
       <input
         type="text"
         class="caja-b6"
         [(ngModel)]="datos.solicitud.colonia"
       />
-
       <label for="" class="tit-b7">Tipo de domicilio *</label>
-      <!-- <input type="text" class="caja-b7" [(ngModel)]="datos.solicitud.tipo_domicilio" /> -->
 
       <select
         name=""
@@ -220,7 +198,7 @@
         <option value="Otro">Otro</option>
       </select>
 
-      <label for="" class="tit-b8">Fotografia *</label>
+      <label for="" class="tit-b8">Fotografía *</label>
       <div class="caja-b8" (click)="subirFoto()"></div>
       <img
         class="foto"
@@ -236,7 +214,6 @@
         *ngIf="!imagencargada"
         src="../assets/img/agregarFoto.svg"
       />
-
       <label for="" class="tit-b9">Notas</label>
       <textarea
         name=""
@@ -246,7 +223,6 @@
         class="caja-b9"
         [(ngModel)]="datos.solicitud.notas"
       ></textarea>
-
       <button class="btn-br" (click)="regresar()">Regresar</button>
       <button class="btn-bc" (click)="siguiente()">Continuar</button>
     </div>
@@ -260,13 +236,13 @@
         {{ datos.solicitante.apellido_paterno }}
         {{ datos.solicitante.apellido_materno }}</label
       >
-      <label for="" class="tit-c6">Direccion: </label>
+      <label for="" class="tit-c6">Dirección: </label>
       <label for="" class="tit-c7"
         >{{ datos.solicitante.calle }} #{{ datos.solicitante.no_casa }}</label
       >
       <label for="" class="tit-c8">Colonia: </label>
       <label for="" class="tit-c9">{{ datos.solicitante.colonia }}</label>
-      <label for="" class="tit-c10">Telefono: </label>
+      <label for="" class="tit-c10">Teléfono: </label>
       <label for="" class="tit-c11">{{ datos.solicitante.telefono }}</label>
 
       <label for="" class="tit-c12">Correo: </label>
@@ -274,7 +250,7 @@
       <label for="" class="tit-c14">Datos del reporte</label>
       <label for="" class="tit-c15">Servicio: </label>
       <label for="" class="tit-c16"> {{ datos.solicitud.tipo_servicio }}</label>
-      <label for="" class="tit-c17">Direccion: </label>
+      <label for="" class="tit-c17">Dirección: </label>
       <label for="" class="tit-c18"
         >{{ datos.solicitud.calle }} #{{ datos.solicitud.numero }}</label
       >
@@ -284,7 +260,7 @@
       <label for="" class="tit-c22">{{ datos.solicitud.colonia }}</label>
       <label for="" class="tit-c23">Notas: </label>
       <label for="" class="tit-c24">{{ datos.solicitud.notas }}</label>
-      <label for="" class="tit-c25">Fotografia:</label>
+      <label for="" class="tit-c25">Fotografía:</label>
       <img class="fotoDatos" [src]="datos.solicitud.fotografia" alt="" />
 
       <button class="btn-ce" (click)="enviar()">Enviar</button>
@@ -301,7 +277,7 @@
         >el número de su reporte es: {{ datos.solicitud.folio }}</label
       >
       <label for="" class="tit-d4"
-        >Para dar seguimiento: acceda a la sección seguimiento ubicado en el
+        >Para dar seguimiento: acceda a la sección Seguimiento ubicado en él
         menú superior de esta página</label
       >
       <label for="" class="tit-d5">Datos del reporte: </label>
@@ -311,14 +287,14 @@
         {{ datos.solicitante.apellido_paterno }}
         {{ datos.solicitante.apellido_materno }}</label
       >
-      <label for="" class="tit-d7">Telefono: </label>
+      <label for="" class="tit-d7">Teléfono: </label>
       <label for="" class="tit-d8">{{ datos.solicitante.telefono }}</label>
       <label for="" class="tit-d88">Detalles del reporte</label>
       <label for="" class="tit-d9">Servicio: </label>
       <label for="" class="tit-d10">{{ datos.solicitud.tipo_servicio }}</label>
       <label for="" class="tit-d11">Responsable: </label>
-      <label for="" class="tit-d12">{{responsable}}</label>
-      <label for="" class="tit-d13">Direccion: </label>
+      <label for="" class="tit-d12">{{ responsable }}</label>
+      <label for="" class="tit-d13">Dirección: </label>
       <label for="" class="tit-d14"
         >{{ datos.solicitud.calle }} #{{ datos.solicitud.numero }}</label
       >
@@ -326,26 +302,20 @@
       <label for="" class="tit-d16">{{ datos.solicitud.tipo_domicilio }}</label>
       <label for="" class="tit-d17">Colonia: </label>
       <label for="" class="tit-d18">{{ datos.solicitud.colonia }}</label>
-      <!-- <label for="" class="tit-d19">Notas: </label>
-      <label for="" class="tit-d19">{{datos.solicitud.notas}}</label> -->
-
       <button class="btn-di" (click)="imprimir()">Imprimir</button>
     </div>
     <div id="pdf" #pdf>
       <p style="text-align: center; font-weight: bold; font-size: 35px">
         <label for="" class="textPdf titulopdf">SOLICITUD DE SERVICIO</label>
       </p>
-
       <p style="text-align: center; color: red">
         <label for="" class="textPdf"
           >el número de su reporte es: {{ datos.solicitud.folio }}</label
         >
       </p>
-
       <p style="padding-bottom: 20px; font-weight: bold">
         <label for="" class="textPdf">Datos del reporte: </label>
       </p>
-
       <p>
         <label for="" class="textPdf">Nombre completo: </label>
         <label for="" class="textPdf"
@@ -354,71 +324,43 @@
           {{ datos.solicitante.apellido_materno }}</label
         >
       </p>
-
       <p>
-        <label for="" class="textPdf">Telefono: </label>
+        <label for="" class="textPdf">Teléfono: </label>
         <label for="" class="textPdf">{{ datos.solicitante.telefono }}</label>
       </p>
-
       <p style="padding-bottom: 20px; padding-top: 20px; font-weight: bold">
         <label for="" class="textPdf">Detalles del reporte:</label>
       </p>
-
       <p>
         <label for="" class="textPdf">Servicio: </label>
         <label for="" class="textPdf">{{
           datos.solicitud.tipo_servicio
         }}</label>
       </p>
-
       <p>
         <label for="" class="textPdf">Responsable: </label>
-        <label for="" class="textPdf">{{responsable}}</label>
+        <label for="" class="textPdf">{{ responsable }}</label>
       </p>
-
       <p>
-        <label for="" class="textPdf">Direccion: </label>
+        <label for="" class="textPdf">Dirección: </label>
         <label for="" class="textPdf"
-          >{{ datos.solicitud.calle }} #{{ datos.solicitud.numero }} Col. {{datos.solicitud.colonia}}</label
+          >{{ datos.solicitud.calle }} #{{ datos.solicitud.numero }} Col.
+          {{ datos.solicitud.colonia }}</label
         >
       </p>
-
       <p>
         <label for="" class="textPdf">Tipo de domicilio: </label>
         <label for="" class="textPdf">{{
           datos.solicitud.tipo_domicilio
         }}</label>
       </p>
-
-      <!-- <p>
-        <label for="" class="textPdf">Colonia: </label>
-        <label for="" class="textPdf">{{ datos.solicitud.colonia }}</label>
-      </p> -->
-
-      <!-- <label for="" class="tit-d5">Datos del reporte: </label>
-      <label for="" class="tit-d6">Nombre completo: </label>
-      <label for="" class="tit-d66">{{datos.solicitante.nombres}} {{datos.solicitante.apellido_paterno}} {{datos.solicitante.apellido_materno}}</label>
-      <label for="" class="tit-d7">Telefono: </label>
-      <label for="" class="tit-d8">{{datos.solicitante.telefono}}</label>
-      <label for="" class="tit-d88">Detalles del reporte</label>
-      <label for="" class="tit-d9">Servicio: </label>
-      <label for="" class="tit-d10">{{datos.solicitud.tipo_servicio}}</label>
-      <label for="" class="tit-d11">Responsable: </label>
-      <label for="" class="tit-d12">responsable</label>
-      <label for="" class="tit-d13">Direccion: </label>
-      <label for="" class="tit-d14">{{datos.solicitud.calle}} #{{datos.solicitud.numero}}</label>
-      <label for="" class="tit-d15">Tipo de domicilio: </label>
-      <label for="" class="tit-d16">{{datos.solicitud.tipo_domicilio}}</label>
-      <label for="" class="tit-d17">Colonia: </label>
-      <label for="" class="tit-d18">{{datos.solicitud.colonia}}</label> -->
     </div>
   </div>
   <div class="contenedorSeguimiento" *ngIf="menu == 2">
-    <!-- <h4 class="titulo">Seguimiento</h4> -->
     <div class="contenidoSeg">
       <div></div>
       <div>
-        <h2 class="hrr">Numero de seguimiento</h2>
+        <h2 class="hrr">Número de seguimiento</h2>
         <input
           type="text"
           class="cajaSeg"
@@ -437,10 +379,10 @@
           <label for=""
             >Servicio solicitado: {{ datosMostrar.tipo_servicio }}</label
           >
-          <label for="">Ubicacion: {{ datosMostrar.ubicacion }}</label>
+          <label for="">Ubicación: {{ datosMostrar.ubicacion }}</label>
           <label for="">Estatus: {{ datosMostrar.estatus }}</label>
           <label for=""
-            >Dia solicitado: {{ datosMostrar.fecha_solicitud }}</label
+            >Día solicitado: {{ datosMostrar.fecha_solicitud }}</label
           >
           <label for="">Notas: {{ datosMostrar.notas }}</label>
           <label for="">Reportado: {{ datosMostrar.Reportado }}</label>
@@ -453,7 +395,7 @@
           <br />
           <label for="">Responsable: {{ datosMostrar.Responsable }}</label>
           <label for=""
-            >Fecha de realizacion: {{ datosMostrar.fecha_realizacion }}</label
+            >Fecha de realización: {{ datosMostrar.fecha_realizacion }}</label
           >
           <label for="">Precio: {{ datosMostrar.precio }}</label>
           <label for=""

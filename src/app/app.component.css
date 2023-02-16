@@ -20,7 +20,7 @@
 
 .fecha {
   text-align: end;
-  height: 30px;
+  height: 40px;
   margin: 40px;
 
   font-family: "Inter";
@@ -260,7 +260,7 @@ h4 {
 
 .tit2 {
   position: absolute;
-  width: 122px;
+  width: 208px;
   height: 15px;
   left: 483px;
   top: 331px;
@@ -289,7 +289,7 @@ h4 {
 
 .tit3 {
   position: absolute;
-  width: 150px;
+  width: 208px;
   height: 15px;
   left: 707px;
   top: 328px;
@@ -318,7 +318,7 @@ h4 {
 
 .tit4 {
   position: absolute;
-  width: 61px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 397px;
@@ -347,7 +347,7 @@ h4 {
 
 .tit5 {
   position: absolute;
-  width: 93px;
+  width: 208px;
   height: 15px;
   left: 483px;
   top: 397px;
@@ -376,7 +376,7 @@ h4 {
 
 .tit6 {
   position: absolute;
-  width: 97px;
+  width: 208px;
   height: 15px;
   left: 707px;
   top: 397px;
@@ -405,7 +405,7 @@ h4 {
 
 .tit7 {
   position: absolute;
-  width: 100px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 466px;
@@ -434,7 +434,7 @@ h4 {
 
 .tit8 {
   position: absolute;
-  width: 39px;
+  width: 208px;
   height: 15px;
   left: 575px;
   top: 466px;
@@ -463,7 +463,7 @@ h4 {
 
 .tit9 {
   position: absolute;
-  width: 120px;
+  width: 208px;
   height: 15px;
   left: 800px;
   top: 466px;
@@ -492,7 +492,7 @@ h4 {
 
 .tit10 {
   position: absolute;
-  width: 150px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 538px;
@@ -521,7 +521,7 @@ h4 {
 
 .tit11 {
   position: absolute;
-  width: 82px;
+  width: 208px;
   height: 15px;
   left: 483px;
   top: 535px;
@@ -550,7 +550,7 @@ h4 {
 
 .tit12 {
   position: absolute;
-  width: 83px;
+  width: 208px;
   height: 15px;
   left: 707px;
   top: 538px;
@@ -590,7 +590,7 @@ h4 {
 
 .textCheck {
   position: absolute;
-  width: 372px;
+  width: 500px;
   height: 15px;
   left: 288px;
   top: 601px;
@@ -607,7 +607,7 @@ h4 {
 
 .tit-b1 {
   position: absolute;
-  width: 91px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 331px;
@@ -666,7 +666,7 @@ h4 {
 
 .tit-b2 {
   position: absolute;
-  width: 100px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 399px;
@@ -724,7 +724,7 @@ h4 {
 
 .tit-b4 {
   position: absolute;
-  width: 82px;
+  width: 208px;
   height: 15px;
   left: 599px;
   top: 399px;
@@ -753,7 +753,7 @@ h4 {
 
 .tit-b5 {
   position: absolute;
-  width: 83px;
+  width: 208px;
   height: 15px;
   left: 823px;
   top: 399px;
@@ -782,7 +782,7 @@ h4 {
 
 .tit-b6 {
   position: absolute;
-  width: 100px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 466px;
@@ -811,7 +811,7 @@ h4 {
 
 .tit-b7 {
   position: absolute;
-  width: 97px;
+  width: 208px;
   height: 15px;
   left: 774px;
   top: 466px;
@@ -839,7 +839,7 @@ h4 {
 
 .tit-b8 {
   position: absolute;
-  width: 104px;
+  width: 208px;
   height: 15px;
   left: 259px;
   top: 537px;
@@ -1333,7 +1333,7 @@ h4 {
 
 .tit-d1 {
   position: absolute;
-  width: 262px;
+  width: 400px;
   height: 15px;
   left: 455px;
   top: 320px;
@@ -1350,7 +1350,7 @@ h4 {
 
 .tit-d2 {
   position: absolute;
-  width: 169px;
+  width: 208px;
   height: 15px;
   left: 501px;
   top: 340px;
@@ -1484,7 +1484,7 @@ h4 {
 
 .tit-d88 {
   position: absolute;
-  width: 116px;
+  width: 208px;
   height: 15px;
   left: 120px;
   top: 577px;
